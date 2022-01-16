@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Modal from './MyModal';
+import Button from 'react-bootstrap/button';
 
 class PictureApp extends Component {
   constructor(props) {
@@ -13,14 +15,19 @@ class PictureApp extends Component {
       query: '',
       page: '1',
       pics: [],
+      show: false,
+      data: {},
+      title: '',
+      user: {},
     };
   }
+  showModal = () => {
+    this.setState({ show: true });
+  };
 
-  // componentDidMount() {
-  //   axios
-  //     .get('https://source.unsplash.com/random')
-  //     .then((response) => this.setState({ url: response.request.responseURL }));
-  // }
+  hideModal = () => {
+    this.setState({ show: false });
+  };
 
   handleClick = async (e) => {
     e.preventDefault();
@@ -28,7 +35,9 @@ class PictureApp extends Component {
       .get(
         `https://api.unsplash.com/search/photos?query=${this.state.query}&page=${this.state.page}&client_id=${this.state.client_id}`
       )
-      .then((response) => this.setState({ pics: response.data.results }));
+      .then((response) =>
+        this.setState({ pics: response.data.results, data: response.data })
+      );
   };
 
   render() {
@@ -54,7 +63,6 @@ class PictureApp extends Component {
           </button>
         </form>
         <div className="card-list">
-          <img alt="" src={this.state.url}></img>
           {this.state.pics.map((pic) => (
             <div className="card" key={pic.id}>
               <img
@@ -64,8 +72,32 @@ class PictureApp extends Component {
                 width="50%"
                 height="50%"
               ></img>
+              {/* <div className="more-div"> */}
+              <Button
+                className="button my-btn"
+                onClick={() =>
+                  this.setState({
+                    show: true,
+                    url: pic.urls.regular,
+                    title: pic.description,
+                    user: pic.user,
+                  })
+                }
+              >
+                MORE
+              </Button>
+              {/* </div> */}
             </div>
           ))}
+          <Modal
+            title={this.state.title}
+            onClose={() => this.setState({ show: false })}
+            show={this.state.show}
+            url={this.state.url}
+            user={this.state.user}
+          >
+            <p>This is modal body</p>
+          </Modal>
         </div>
       </div>
     );
