@@ -25,14 +25,17 @@ const Modal = (props) => {
       <div className="modal" onClick={props.onClose}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-header">
+            <h1 className="modal-title">{props.title}</h1>
             <div className="bio">
               <h2>by: {props.user.name}</h2>
+              <div className="quote">
+                <h4>{props.user.bio}</h4>
+              </div>
             </div>
           </div>
           <div className="modal-body">
-            <h1 className="modal-title">{props.title}</h1>
             <img alt="" className="gallery-img" src={props.url} />
-
+            <h3>Created at: {props.created.slice(0, 9)}</h3>
             <h3>likes: {props.user.total_likes}</h3>
           </div>
           <div className="modal-footer">

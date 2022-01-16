@@ -2,14 +2,16 @@
 h1 {
   color: steelblue;
   font-size: x-large;
-  max-inline-size: fit-content;
   font-family: 'Rubik', sans-serif;
+  font-variant-caps: small-caps;
+  max-inline-size: fit-content;
 }
 
 h2 {
   font-size: 16px;
   color: grey;
   font-family: 'Rubik', sans-serif;
+  font-variant: all-small-caps;
 }
 
 h3 {
@@ -18,8 +20,9 @@ h3 {
 }
 
 .bio {
-  display: flex;
   justify-content: space-between;
+  max-inline-size: fit-content;
+  font-family: 'Rubik', sans-serif;
 }
 
 .modal {
@@ -38,7 +41,8 @@ h3 {
 }
 
 .gallery-img {
-  width: 500px;
+  width: 345px;
+  object-fit: scale-down;
 }
 
 .modal.enter-done {

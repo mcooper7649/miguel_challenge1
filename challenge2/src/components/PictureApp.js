@@ -19,6 +19,8 @@ class PictureApp extends Component {
       data: {},
       title: '',
       user: {},
+      alttitle: '',
+      created: '',
     };
   }
   showModal = () => {
@@ -44,7 +46,7 @@ class PictureApp extends Component {
     console.log(this.state.pics);
     return (
       <div className="container">
-        <h1 className="title">React Photo Search</h1>
+        <h1 className="title">Quick Photo Search</h1>
         <form className="form" onSubmit={this.handleClick}>
           <label className="label" htmlFor="query">
             {' '}
@@ -80,7 +82,9 @@ class PictureApp extends Component {
                     show: true,
                     url: pic.urls.regular,
                     title: pic.description,
+                    alttitle: pic.alt_description,
                     user: pic.user,
+                    created: pic.created_at,
                   })
                 }
               >
@@ -91,10 +95,12 @@ class PictureApp extends Component {
           ))}
           <Modal
             title={this.state.title}
+            alttitle={this.state.alttitle}
             onClose={() => this.setState({ show: false })}
             show={this.state.show}
             url={this.state.url}
             user={this.state.user}
+            created={this.state.created}
           >
             <p>This is modal body</p>
           </Modal>
