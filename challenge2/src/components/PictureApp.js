@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Modal from './MyModal';
-import Button from 'react-bootstrap/button';
+import Button from 'react-bootstrap/Button';
 
 class PictureApp extends Component {
   constructor(props) {
